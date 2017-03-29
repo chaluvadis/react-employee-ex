@@ -16,7 +16,7 @@ class Login extends Component {
     }
 
     handleLogin(event) {
-        this.state.isLoggedIn = true;
+        this.setState({isLoggedIn: true});
     }
 
     handleUserNameChange(event) {
@@ -31,7 +31,7 @@ class Login extends Component {
         const isLoggedIn = this.state.isLoggedIn;
         let userDetails = null;
         if(isLoggedIn) {
-            userDetails = <UserDetails/>;
+            userDetails = <UserDetails username={this.state.username} password={this.state.password}/>;
         }
         return(
             <div>
