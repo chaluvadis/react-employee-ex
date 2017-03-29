@@ -1,0 +1,17 @@
+label.label-control {
+    font-size: 18px;
+    line-height: 18px;
+    color: #673AB7;
+}
+
+.successClass {
+    color: yellowgreen;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.errorClass {
+    color: orangered;
+    font-size: 18px;
+    font-weight: bold;
+}

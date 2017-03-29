@@ -3,20 +3,27 @@ import React, {
 } from 'react';
 
 import './Login.css';
-import UserDetails from '../UserDetails/UserDetails';
+import Details from '../Details/Details';
 
 class Login extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {username: '', password:'', isButtonClicked : false};
+        this.state = {username: '', password:'', isLoggedIn : false, isError: false, message : ''};
         this.handleLogin = this.handleLogin.bind(this);
         this.handleUserNameChange = this.handleUserNameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
     }
 
     handleLogin(event) {
-        this.setState({isLoggedIn: true});
+
+        let username =  this.state.username;
+        let password = this.state.password;
+        if(username !== 'Admin' && password !== 'Admin') {
+            this.setState({isError: !this.state.isError, message: "Invalid Login Details"});
+        } else {
+            this.setState({isLoggedIn: !this.state.isLoggedIn, message: "Welcome to Employee Portal"});
+        }
     }
 
     handleUserNameChange(event) {
@@ -28,11 +35,15 @@ class Login extends Component {
     }
 
     render(){
-        const isLoggedIn = this.state.isLoggedIn;
+        let isLoggedIn = this.state.isLoggedIn;
+        let isError = this.state.isError;
         let userDetails = null;
-        if(isLoggedIn) {
-            userDetails = <UserDetails username={this.state.username} password={this.state.password}/>;
+        if(isLoggedIn && !isError) {
+            userDetails = <Details message={this.state.message} status="sucess"/>;
+        } else {
+            userDetails = <Details message={this.state.message} status="error" />;
         }
+
         return(
             <div>
                 <form name="login-form">
