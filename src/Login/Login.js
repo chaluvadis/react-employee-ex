@@ -1,7 +1,6 @@
-import React, {
-    Component
-} from 'react';
+import React, { Component } from 'react';
 
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import './Login.css';
 import Details from '../Details/Details';
 
@@ -16,12 +15,12 @@ class Login extends Component {
     }
 
     handleLogin(event) {
-
         let username =  this.state.username;
         let password = this.state.password;
         if(username !== 'Admin' && password !== 'Admin') {
             this.setState({isError: !this.state.isError, message: "Invalid Login Details"});
         } else {
+            window.location.assign('list');
             this.setState({isLoggedIn: !this.state.isLoggedIn, message: "Welcome to Employee Portal"});
         }
     }
